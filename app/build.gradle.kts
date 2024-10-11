@@ -1,6 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    //for libraries
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.google.dagger)
+
+    //for firebase sdk
+    alias(libs.plugins.google.gms)
 }
 
 android {
@@ -38,7 +44,7 @@ android {
     }
     buildFeatures {
         compose = true
-    }
+    } 
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
@@ -66,4 +72,28 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.com.google.dagger.hilt.android)
+    kapt(libs.com.google.dagger.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.video)
+    implementation(libs.androidx.camera.mlkit.vision)
+    implementation(libs.androidx.camera.extensions)
+
+
+    implementation(platform(libs.com.google.firebase.bom))
+    implementation(libs.com.google.firebase.analytics)
+    implementation(libs.com.google.firebase.auth)
+    implementation(libs.com.google.firebase.firestore)
+    
+}
+
+kapt {
+    correctErrorTypes = true
 }
