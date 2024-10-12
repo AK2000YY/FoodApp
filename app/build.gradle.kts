@@ -1,12 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.google.gms)
     alias(libs.plugins.jetbrains.kotlin.android)
-    //for libraries
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.google.dagger)
-
-    //for firebase sdk
-    alias(libs.plugins.google.gms)
 }
 
 android {
@@ -46,7 +43,7 @@ android {
         compose = true
     } 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.10"
     }
     packaging {
         resources {
@@ -83,15 +80,17 @@ dependencies {
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.view)
     implementation(libs.androidx.camera.video)
-    implementation(libs.androidx.camera.mlkit.vision)
     implementation(libs.androidx.camera.extensions)
-
 
     implementation(platform(libs.com.google.firebase.bom))
     implementation(libs.com.google.firebase.analytics)
     implementation(libs.com.google.firebase.auth)
     implementation(libs.com.google.firebase.firestore)
-    
+
+    implementation(libs.tensorflow.lite.task.vision)
+    implementation(libs.tensorflow.lite.gpu.delegate.plugin)
+    implementation(libs.tensorflow.lite.gpu)
+
 }
 
 kapt {
