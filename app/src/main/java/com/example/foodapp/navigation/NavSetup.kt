@@ -1,5 +1,6 @@
 package com.example.foodapp.navigation
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -19,6 +20,7 @@ fun NavSetup(
         startDestination = REGISTRATION_ROUTE
     ) {
         registration(
+            modifier = Modifier.fillMaxSize(),
             navHostController = navHostController
         )
         composable(
