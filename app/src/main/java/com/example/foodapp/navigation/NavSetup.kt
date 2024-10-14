@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import com.example.foodapp.core.constant.Routes.REGISTRATION_ROUTE
 import com.example.foodapp.navigation.graph.registration
 import com.example.foodapp.navigation.Screen.ProfileScreen
+import com.example.foodapp.navigation.Screen.AppScreen
 
 @Composable
 fun NavSetup(
@@ -23,6 +24,11 @@ fun NavSetup(
             modifier = Modifier.fillMaxSize(),
             navHostController = navHostController
         )
+
+        composable(
+            route = AppScreen.route
+        ) {  }
+
         composable(
             route = ProfileScreen.route
         ) {

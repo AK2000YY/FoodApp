@@ -7,10 +7,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.foodapp.core.constant.Routes
 import com.example.foodapp.navigation.Screen.IntroducedScreen
-import com.example.foodapp.navigation.Screen.SignupScreen
-import com.example.foodapp.navigation.Screen.LoginScreen
+import com.example.foodapp.navigation.Screen.SignupLoginScreen
+import com.example.foodapp.navigation.Screen.AppScreen
 import com.example.foodapp.presentation.introduction.IntroductionScreen
-
+import com.example.foodapp.presentation.signupLogin.SignupLoginScreen
 
 fun NavGraphBuilder.registration(
     modifier: Modifier,
@@ -25,20 +25,30 @@ fun NavGraphBuilder.registration(
             route = IntroducedScreen.route
         ) {
             IntroductionScreen(
-                modifier = modifier
+                modifier = modifier,
+                toRegister = {
+                    navHostController.navigate(SignupLoginScreen.route) {
+                        popUpTo(navHostController.graph.startDestinationId){
+                            inclusive = true
+                        }
+                    }
+                },
+                toApp =  {
+                    navHostController.navigate(AppScreen.route) {
+                        popUpTo(navHostController.graph.startDestinationId){
+                            inclusive = true
+                        }
+                    }
+                }
             )
         }
 
         composable(
-            route = SignupScreen.route
+            route = SignupLoginScreen.route
         ) {
-
-        }
-
-        composable(
-            route = LoginScreen.route
-        ) {
-
+            SignupLoginScreen(
+                modifier = modifier
+            )
         }
     }
 }

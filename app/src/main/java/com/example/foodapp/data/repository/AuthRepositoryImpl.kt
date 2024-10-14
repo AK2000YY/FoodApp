@@ -11,11 +11,16 @@ import javax.inject.Inject
 class AuthRepositoryImpl @Inject constructor(
     private val auth: FirebaseAuth
 ): AuthRepository {
+
     override val currentUser: FirebaseUser?
         get() = auth.currentUser
 
-    override suspend fun signup(email: String, password: String): Response<Boolean> =
+    override suspend fun checkUser(): Response<Boolean> =
+        if(currentUser == null) Response.Failure(Exception("user not found")) else Response.Success(true)
+
+    override suspend fun signup(email: String, password: String, confirmPassword: String): Response<Boolean> =
         try {
+            if(password != confirmPassword) throw Exception("passwords don't match!")
             auth.createUserWithEmailAndPassword(email, password).await()
             Response.Success(true)
         } catch (e: Exception) {
