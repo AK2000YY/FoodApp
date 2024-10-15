@@ -47,7 +47,14 @@ fun NavGraphBuilder.registration(
             route = SignupLoginScreen.route
         ) {
             SignupLoginScreen(
-                modifier = modifier
+                modifier = modifier,
+                toMyApp = {
+                    navHostController.navigate(AppScreen.route) {
+                        popUpTo(navHostController.graph.startDestinationId) {
+                            inclusive = true
+                        }
+                    }
+                }
             )
         }
     }
