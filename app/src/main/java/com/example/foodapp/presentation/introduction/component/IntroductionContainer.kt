@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import com.example.foodapp.R
-import com.example.foodapp.component.AppTitle
+import com.example.foodapp.core.component.AppTitle
 import com.example.foodapp.ui.theme.FirstBackground
 import com.example.foodapp.ui.theme.SecondBackground
 

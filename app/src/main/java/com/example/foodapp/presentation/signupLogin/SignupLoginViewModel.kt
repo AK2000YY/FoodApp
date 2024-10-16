@@ -9,9 +9,11 @@ import com.example.foodapp.domain.model.Response
 import com.example.foodapp.domain.model.Response.Success
 import com.example.foodapp.domain.model.Response.Loading
 import com.example.foodapp.domain.repository.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SignupLoginViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ): ViewModel() {
@@ -27,6 +29,7 @@ class SignupLoginViewModel @Inject constructor(
 
 
     fun login() = viewModelScope.launch {
+        println("$loginEmail $loginPassword \n")
         response = Loading
         response = authRepository.login(loginEmail, loginPassword)
     }

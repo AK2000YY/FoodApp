@@ -12,18 +12,23 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.foodapp.R
-import com.example.foodapp.component.AppTitle
+import com.example.foodapp.core.classes.Utils
+import com.example.foodapp.core.component.AppTitle
+import com.example.foodapp.core.component.CustomProgressBar
+import com.example.foodapp.domain.model.Response
+import com.example.foodapp.presentation.signupLogin.component.CustomPager
 import com.example.foodapp.ui.theme.DarkWhite
 import com.example.foodapp.ui.theme.FirstBackground
 import com.example.foodapp.ui.theme.SecondBackground
@@ -32,8 +37,10 @@ import com.example.foodapp.ui.theme.White
 @Composable
 fun SignupLoginScreen(
     modifier: Modifier = Modifier,
+    viewModel: SignupLoginViewModel = hiltViewModel(),
     toMyApp: () -> Unit
 ) {
+    val context = LocalContext.current
     Scaffold(
         modifier = modifier,
     ) { innerPadding ->
@@ -78,16 +85,38 @@ fun SignupLoginScreen(
                     .height(height.dp - 300.dp)
                     .clip(RoundedCornerShape(50.dp))
                     .background(White)
-                    .align(Alignment.Center)
+                    .align(Alignment.Center),
+                contentAlignment = Alignment.Center
             ) {
-
+                CustomPager(
+                    emailLogin = viewModel.loginEmail,
+                    passwordLogin = viewModel.loginPassword,
+                    emailSignup = viewModel.signupEmail,
+                    passwordSignup = viewModel.signupPassword,
+                    confirmPasswordSignup = viewModel.signupConfirmPassword,
+                    emailLoginChange = { viewModel.loginEmail = it },
+                    passwordLoginChange = { viewModel.loginPassword = it },
+                    emailSignupChange = { viewModel.signupEmail = it },
+                    passwordSignupChange = { viewModel.signupPassword = it },
+                    confirmPasswordSignupChange = { viewModel.signupConfirmPassword = it },
+                    login = { viewModel.login() },
+                    signup = { viewModel.signup() }
+                )
+            }
+        }
+        when(val response = viewModel.response) {
+            is Response.Loading ->
+                CustomProgressBar()
+            is Response.Success ->
+                LaunchedEffect(key1 = response.data) {
+                    if(response.data)
+                        toMyApp()
+                }
+            is Response.Failure -> {
+                LaunchedEffect(response.e) {
+                    Utils.showMessage(context, response.e.message)
+                }
             }
         }
     }
-}
-
-@Preview
-@Composable
-private fun SignupLoginScreenPreview() {
-    SignupLoginScreen(modifier = Modifier.fillMaxSize(), toMyApp = {})
 }

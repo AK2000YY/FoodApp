@@ -1,4 +1,4 @@
-package com.example.foodapp.component
+package com.example.foodapp.core.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

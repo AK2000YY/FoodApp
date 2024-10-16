@@ -1,4 +1,4 @@
-package com.example.foodapp.component
+package com.example.foodapp.core.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
