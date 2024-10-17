@@ -38,7 +38,7 @@ import com.example.foodapp.ui.theme.White
 fun SignupLoginScreen(
     modifier: Modifier = Modifier,
     viewModel: SignupLoginViewModel = hiltViewModel(),
-    toMyApp: () -> Unit
+    toVerify: () -> Unit
 ) {
     val context = LocalContext.current
     Scaffold(
@@ -110,7 +110,7 @@ fun SignupLoginScreen(
             is Response.Success ->
                 LaunchedEffect(key1 = response.data) {
                     if(response.data)
-                        toMyApp()
+                        toVerify()
                 }
             is Response.Failure -> {
                 LaunchedEffect(response.e) {

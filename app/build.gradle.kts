@@ -86,6 +86,7 @@ dependencies {
     implementation(libs.com.google.firebase.analytics)
     implementation(libs.com.google.firebase.auth)
     implementation(libs.com.google.firebase.firestore)
+    implementation(libs.androidx.compose.material)
 
     implementation(libs.tensorflow.lite.task.vision)
     implementation(libs.tensorflow.lite.gpu.delegate.plugin)

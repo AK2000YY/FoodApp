@@ -14,5 +14,7 @@ interface AuthRepository {
 
     suspend fun logout(): Response<Boolean>
 
+    suspend fun sendEmailVerification(): Response<Boolean>
+
     suspend fun reload(): Response<Boolean>
 }

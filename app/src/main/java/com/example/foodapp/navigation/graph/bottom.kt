@@ -19,19 +19,16 @@ fun NavGraphBuilder.bottom(
         composable(
             route = FindOutKindFoodScreen.route
         ) {
-
         }
 
         composable(
             route = DiscoveredFoodScreen.route
         ) {
-
         }
 
         composable(
             route = FavouriteFoodScreen.route
         ) {
-
         }
     }
 }

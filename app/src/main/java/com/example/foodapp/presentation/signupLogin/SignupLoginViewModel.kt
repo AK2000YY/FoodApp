@@ -20,6 +20,7 @@ class SignupLoginViewModel @Inject constructor(
     var response by mutableStateOf<Response<Boolean>>(Success(false))
         private set
 
+
     var loginEmail by mutableStateOf("")
     var loginPassword by mutableStateOf("")
 

@@ -6,7 +6,7 @@ import android.widget.Toast
 
 class Utils {
     companion object {
-        fun print(e: Exception) = Log.d("AK2000YY", e.stackTraceToString())
+        fun print(e: Exception) = Log.d("AK2000YY", e.message.toString())
 
         fun showMessage(
             context: Context,

@@ -3,8 +3,9 @@ package com.example.foodapp.presentation.introduction
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.foodapp.core.classes.Utils
+import com.example.foodapp.core.constant.Constant.USER_NOT_FOUND
 import com.example.foodapp.domain.model.Response
 import com.example.foodapp.presentation.introduction.component.IntroductionContainer
 
@@ -13,6 +14,7 @@ fun IntroductionScreen(
     modifier: Modifier = Modifier,
     viewModel: IntroductionViewModel = hiltViewModel(),
     toRegister: () -> Unit,
+    toVerification: () -> Unit,
     toApp: () -> Unit
 ) {
     when(val response = viewModel.response) {
@@ -27,12 +29,9 @@ fun IntroductionScreen(
             }
         is Response.Failure ->
             LaunchedEffect(response.e) {
-                toRegister()
+                Utils.print(response.e)
+                if(response.e.message == USER_NOT_FOUND) toRegister()
+                else toVerification()
             }
     }
-}
-
-@Preview
-@Composable
-private fun PrevScreen() {
 }

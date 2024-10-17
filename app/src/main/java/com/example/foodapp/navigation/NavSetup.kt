@@ -21,7 +21,7 @@ fun NavSetup(
         startDestination = REGISTRATION_ROUTE
     ) {
         registration(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             navHostController = navHostController
         )
 
