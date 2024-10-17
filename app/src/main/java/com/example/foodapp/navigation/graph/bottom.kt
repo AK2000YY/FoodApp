@@ -13,8 +13,10 @@ import com.example.foodapp.core.constant.Routes.APP_ROUTE
 import com.example.foodapp.navigation.Screen.FindOutKindFoodScreen
 import com.example.foodapp.navigation.Screen.DiscoveredFoodScreen
 import com.example.foodapp.navigation.Screen.FavouriteFoodScreen
+import com.example.foodapp.presentation.findOutFood.FindOutFoodScreen
 
 fun NavGraphBuilder.bottom(
+    modifier: Modifier,
     navHostController: NavHostController
 ) {
     navigation(
@@ -24,21 +26,16 @@ fun NavGraphBuilder.bottom(
         composable(
             route = FindOutKindFoodScreen.route
         ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Find out")
-            }
+            FindOutFoodScreen(
+                modifier = modifier
+            )
         }
 
         composable(
             route = DiscoveredFoodScreen.route
         ) {
             Box(
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier = modifier,
                 contentAlignment = Alignment.Center
             ) {
                 Text(text = "Discovered")
@@ -49,8 +46,7 @@ fun NavGraphBuilder.bottom(
             route = FavouriteFoodScreen.route
         ) {
             Box(
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier = modifier,
                 contentAlignment = Alignment.Center
             ) {
                 Text(text = "Favourite")

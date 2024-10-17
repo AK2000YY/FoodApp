@@ -17,6 +17,7 @@ fun BottomNavSetup(
         startDestination = APP_ROUTE
     ) {
         bottom(
+            modifier = modifier,
             navHostController = navHostController
         )
     }

@@ -2,12 +2,14 @@ package com.example.foodapp.presentation.myApp
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.BottomNavigation
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
-import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -15,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -24,7 +27,7 @@ import com.example.foodapp.navigation.BottomNavSetup
 import com.example.foodapp.navigation.Screen
 
 val topLevelRoutes = listOf(
-    TopLevelRoute("Favourite", Screen.FavouriteFoodScreen, Icons.Rounded.Favorite),
+    TopLevelRoute("Favourite", Screen.FavouriteFoodScreen, Icons.Rounded.FavoriteBorder),
     TopLevelRoute("Discovered", Screen.DiscoveredFoodScreen, Icons.Rounded.Search),
     TopLevelRoute("Find Out", Screen.FindOutKindFoodScreen, Icons.Rounded.Add),
 )
@@ -38,7 +41,8 @@ fun MyAppScreen(modifier: Modifier = Modifier) {
         bottomBar = {
             BottomNavigation(
                 contentColor = Color.White,
-                backgroundColor = Color.White
+                backgroundColor = Color.White,
+                elevation = 0.dp
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentDestination = navBackStackEntry?.destination
