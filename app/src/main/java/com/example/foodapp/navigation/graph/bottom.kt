@@ -1,5 +1,10 @@
 package com.example.foodapp.navigation.graph
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -19,16 +24,37 @@ fun NavGraphBuilder.bottom(
         composable(
             route = FindOutKindFoodScreen.route
         ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Find out")
+            }
         }
 
         composable(
             route = DiscoveredFoodScreen.route
         ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Discovered")
+            }
         }
 
         composable(
             route = FavouriteFoodScreen.route
         ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = "Favourite")
+            }
         }
     }
 }

@@ -1,0 +1,71 @@
+package com.example.foodapp.presentation.myApp
+
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.Favorite
+import androidx.compose.material.icons.rounded.Search
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.example.foodapp.domain.model.TopLevelRoute
+import com.example.foodapp.navigation.BottomNavSetup
+import com.example.foodapp.navigation.Screen
+
+val topLevelRoutes = listOf(
+    TopLevelRoute("Favourite", Screen.FavouriteFoodScreen, Icons.Rounded.Favorite),
+    TopLevelRoute("Discovered", Screen.DiscoveredFoodScreen, Icons.Rounded.Search),
+    TopLevelRoute("Find Out", Screen.FindOutKindFoodScreen, Icons.Rounded.Add),
+)
+
+@Composable
+fun MyAppScreen(modifier: Modifier = Modifier) {
+    val navController = rememberNavController()
+    Scaffold(
+        modifier = modifier,
+        containerColor = Color.White,
+        bottomBar = {
+            BottomNavigation(
+                contentColor = Color.White,
+                backgroundColor = Color.White
+            ) {
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentDestination = navBackStackEntry?.destination
+                topLevelRoutes.forEach { screen ->
+                    BottomNavigationItem(
+                        icon = { Icon(screen.icon, contentDescription = screen.name) },
+                        label = { Text(screen.name) },
+                        selected = currentDestination?.hierarchy?.any { it.route == screen.screen.route } == true,
+                        onClick = {
+                            navController.navigate(screen.screen.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        }
+                    )
+                }
+            }
+        }
+    ) { innerPadding ->
+        BottomNavSetup(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            navHostController = navController
+        )
+    }
+}
