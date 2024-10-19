@@ -17,7 +17,6 @@ class FoodImageAnalyzer @Inject constructor(
     var classification: List<Classification> = emptyList()
         private set
 
-
     override fun analyze(image: ImageProxy) {
         if(frameSkipCounter % 60 == 0) {
             val rotationDegrees = image.imageInfo.rotationDegrees

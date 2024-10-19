@@ -42,10 +42,10 @@ class AppModuleForViewModel {
 
     @Provides
     fun provideFoodImageAnalyzer(
-        foodClassifierImpl: FoodClassifierImpl
+        foodClassifier: FoodClassifier
     ): FoodImageAnalyzer =
         FoodImageAnalyzer(
-            classifier = foodClassifierImpl
+            classifier = foodClassifier
         )
 
 }
