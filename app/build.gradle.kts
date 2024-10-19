@@ -88,6 +88,8 @@ dependencies {
     implementation(libs.com.google.firebase.firestore)
     implementation(libs.androidx.compose.material)
 
+    implementation(libs.io.coil.kt.coil3)
+
     implementation(libs.tensorflow.lite.task.vision)
     implementation(libs.tensorflow.lite.gpu.delegate.plugin)
     implementation(libs.tensorflow.lite.gpu)

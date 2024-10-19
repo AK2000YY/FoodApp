@@ -33,7 +33,10 @@ val topLevelRoutes = listOf(
 )
 
 @Composable
-fun MyAppScreen(modifier: Modifier = Modifier) {
+fun MyAppScreen(
+    modifier: Modifier = Modifier,
+    toCamera: () -> Unit
+) {
     val navController = rememberNavController()
     Scaffold(
         modifier = modifier,
@@ -69,7 +72,8 @@ fun MyAppScreen(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            navHostController = navController
+            navHostController = navController,
+            toCamera = toCamera
         )
     }
 }

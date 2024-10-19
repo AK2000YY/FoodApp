@@ -17,7 +17,8 @@ import com.example.foodapp.presentation.findOutFood.FindOutFoodScreen
 
 fun NavGraphBuilder.bottom(
     modifier: Modifier,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    toCamera: () -> Unit
 ) {
     navigation(
         route = APP_ROUTE,
@@ -27,7 +28,8 @@ fun NavGraphBuilder.bottom(
             route = FindOutKindFoodScreen.route
         ) {
             FindOutFoodScreen(
-                modifier = modifier
+                modifier = modifier,
+                toCamera = toCamera
             )
         }
 

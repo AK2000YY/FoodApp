@@ -2,7 +2,6 @@ package com.example.foodapp.presentation.cameraPreview
 
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
-import androidx.compose.runtime.mutableStateOf
 import com.example.foodapp.core.extensionFunction.centerCrop
 import com.example.foodapp.domain.model.Classification
 import com.example.foodapp.domain.repository.FoodClassifier
@@ -14,19 +13,17 @@ class FoodImageAnalyzer @Inject constructor(
 
     private var frameSkipCounter = 0
 
-    var classification: List<Classification> = emptyList()
-        private set
+    var onResult: (List<Classification>) -> Unit = {}
 
     override fun analyze(image: ImageProxy) {
         if(frameSkipCounter % 60 == 0) {
             val rotationDegrees = image.imageInfo.rotationDegrees
             val bitmap = image
                 .toBitmap()
-                .centerCrop(321, 321)
+                .centerCrop(224, 224)
 
             val results = classifier.classify(bitmap, rotationDegrees)
-//            onResults(results)
-            classification = results
+            onResult(results)
         }
         frameSkipCounter++
 

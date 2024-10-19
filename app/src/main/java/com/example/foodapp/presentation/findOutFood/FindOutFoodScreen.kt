@@ -25,7 +25,10 @@ import com.example.foodapp.R
 import com.example.foodapp.presentation.findOutFood.component.CustomButton
 
 @Composable
-fun FindOutFoodScreen(modifier: Modifier = Modifier) {
+fun FindOutFoodScreen(
+    modifier: Modifier = Modifier,
+    toCamera: () -> Unit
+) {
 
     var selectedImageUri by remember {
         mutableStateOf<Uri?>(null)
@@ -65,6 +68,7 @@ fun FindOutFoodScreen(modifier: Modifier = Modifier) {
                     .width(220.dp),
                 text = "Take Photo From Camera",
                 onClick = {
+                    toCamera()
                 }
             )
             CustomButton(

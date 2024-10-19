@@ -10,6 +10,7 @@ import com.example.foodapp.core.constant.Routes.REGISTRATION_ROUTE
 import com.example.foodapp.navigation.graph.registration
 import com.example.foodapp.navigation.Screen.ProfileScreen
 import com.example.foodapp.navigation.Screen.AppScreen
+import com.example.foodapp.presentation.cameraPreview.CameraPreviewScreen
 import com.example.foodapp.presentation.myApp.MyAppScreen
 
 @Composable
@@ -30,7 +31,19 @@ fun NavSetup(
             route = AppScreen.route
         ) {
             MyAppScreen(
-                modifier = modifier.fillMaxSize()
+                modifier = modifier.fillMaxSize(),
+                toCamera = {
+                    navHostController.navigate(Screen.CameraViewScreen.route)
+                }
+            )
+        }
+
+        composable(
+            route = Screen.CameraViewScreen.route
+        ) {
+            CameraPreviewScreen(
+                modifier = Modifier
+                    .fillMaxSize()
             )
         }
 
