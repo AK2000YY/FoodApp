@@ -31,10 +31,7 @@ fun NavSetup(
             route = AppScreen.route
         ) {
             MyAppScreen(
-                modifier = modifier.fillMaxSize(),
-                toCamera = {
-                    navHostController.navigate(Screen.CameraViewScreen.route)
-                }
+                modifier = modifier.fillMaxSize()
             )
         }
 

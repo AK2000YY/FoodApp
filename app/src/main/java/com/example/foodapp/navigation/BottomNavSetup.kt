@@ -11,7 +11,6 @@ import com.example.foodapp.navigation.graph.bottom
 fun BottomNavSetup(
     modifier: Modifier = Modifier,
     navHostController: NavHostController,
-    toCamera: () -> Unit
 ) {
     NavHost(
         navController = navHostController,
@@ -19,8 +18,7 @@ fun BottomNavSetup(
     ) {
         bottom(
             modifier = modifier,
-            navHostController = navHostController,
-            toCamera = { toCamera() }
+            navHostController = navHostController
         )
     }
 }

@@ -36,7 +36,9 @@ fun FindOutFoodScreen(
 
     val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = { selectedImageUri = it }
+        onResult = {
+            selectedImageUri = it
+        }
     )
 
     Box(

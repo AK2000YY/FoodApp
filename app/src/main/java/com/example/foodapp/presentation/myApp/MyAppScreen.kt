@@ -18,7 +18,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -34,36 +33,42 @@ val topLevelRoutes = listOf(
 
 @Composable
 fun MyAppScreen(
-    modifier: Modifier = Modifier,
-    toCamera: () -> Unit
+    modifier: Modifier = Modifier
 ) {
     val navController = rememberNavController()
     Scaffold(
         modifier = modifier,
         containerColor = Color.White,
         bottomBar = {
-            BottomNavigation(
-                contentColor = Color.White,
-                backgroundColor = Color.White,
-                elevation = 0.dp
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
+            val currentDestination = navBackStackEntry?.destination?.route
+
+            // Show bottom navigation only for specific screens
+            if (currentDestination == Screen.FavouriteFoodScreen.route ||
+                currentDestination == Screen.DiscoveredFoodScreen.route ||
+                currentDestination == Screen.FindOutKindFoodScreen.route
             ) {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
-                topLevelRoutes.forEach { screen ->
-                    BottomNavigationItem(
-                        icon = { Icon(screen.icon, contentDescription = screen.name) },
-                        label = { Text(screen.name) },
-                        selected = currentDestination?.hierarchy?.any { it.route == screen.screen.route } == true,
-                        onClick = {
-                            navController.navigate(screen.screen.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+                BottomNavigation(
+                    contentColor = Color.White,
+                    backgroundColor = Color.White,
+                    elevation = 0.dp
+                ) {
+                    topLevelRoutes.forEach { screen ->
+                        BottomNavigationItem(
+                            icon = { Icon(screen.icon, contentDescription = screen.name) },
+                            label = { Text(screen.name) },
+                            selected = currentDestination == screen.screen.route,
+                            onClick = {
+                                navController.navigate(screen.screen.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
                             }
-                        }
-                    )
+                        )
+                    }
                 }
             }
         }
@@ -72,8 +77,7 @@ fun MyAppScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerPadding),
-            navHostController = navController,
-            toCamera = toCamera
+            navHostController = navController
         )
     }
 }

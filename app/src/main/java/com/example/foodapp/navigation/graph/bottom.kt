@@ -1,7 +1,6 @@
 package com.example.foodapp.navigation.graph
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -10,28 +9,23 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.foodapp.core.constant.Routes.APP_ROUTE
-import com.example.foodapp.navigation.Screen.FindOutKindFoodScreen
+import com.example.foodapp.core.constant.Routes.FIND_OUT_ROUTE
 import com.example.foodapp.navigation.Screen.DiscoveredFoodScreen
 import com.example.foodapp.navigation.Screen.FavouriteFoodScreen
-import com.example.foodapp.presentation.findOutFood.FindOutFoodScreen
 
 fun NavGraphBuilder.bottom(
     modifier: Modifier,
     navHostController: NavHostController,
-    toCamera: () -> Unit
 ) {
     navigation(
         route = APP_ROUTE,
-        startDestination = FindOutKindFoodScreen.route
+        startDestination = FIND_OUT_ROUTE
     ) {
-        composable(
-            route = FindOutKindFoodScreen.route
-        ) {
-            FindOutFoodScreen(
-                modifier = modifier,
-                toCamera = toCamera
-            )
-        }
+
+        findOutFood(
+            modifier = modifier,
+            navHostController = navHostController
+        )
 
         composable(
             route = DiscoveredFoodScreen.route
@@ -54,5 +48,6 @@ fun NavGraphBuilder.bottom(
                 Text(text = "Favourite")
             }
         }
+
     }
 }

@@ -4,6 +4,7 @@ import androidx.camera.view.PreviewView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 //noinspection UsingMaterialAndMaterial3Libraries
@@ -36,7 +37,8 @@ fun CameraPreviewScreen(
                     viewModel.controller.bindToLifecycle(lifecycleOwner)
                 }
             },
-            modifier = modifier
+            modifier = Modifier
+                .fillMaxSize()
         )
         Column(
             modifier = Modifier
