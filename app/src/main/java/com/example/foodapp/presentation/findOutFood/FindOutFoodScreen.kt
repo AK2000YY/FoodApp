@@ -1,6 +1,10 @@
 package com.example.foodapp.presentation.findOutFood
 
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,25 +23,45 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.foodapp.R
+import com.example.foodapp.core.classes.Utils
+import com.example.foodapp.navigation.sharedData.SharedViewModel
 import com.example.foodapp.presentation.findOutFood.component.CustomButton
 
 @Composable
 fun FindOutFoodScreen(
     modifier: Modifier = Modifier,
+    viewModel: SharedViewModel = hiltViewModel(),
     toCamera: () -> Unit
 ) {
 
     var selectedImageUri by remember {
         mutableStateOf<Uri?>(null)
     }
+    val context = LocalContext.current
 
     val singlePhotoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.PickVisualMedia(),
-        onResult = {
-            selectedImageUri = it
+        onResult = {uri ->
+            uri?.let {
+                val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    ImageDecoder.decodeBitmap(ImageDecoder.createSource(context.contentResolver, it))
+                } else {
+                    MediaStore.Images.Media.getBitmap(context.contentResolver, it)
+                }
+                val argbBitmap = if (bitmap.config != Bitmap.Config.ARGB_8888) {
+                    bitmap.copy(Bitmap.Config.ARGB_8888, true)
+                } else {
+                    bitmap
+                }
+
+//                viewModel.analyzeImage(argbBitmap)
+//                Utils.showMessage(context, viewModel.classification.toString())
+            }
         }
     )
 

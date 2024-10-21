@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class FoodClassifierImpl @Inject constructor(
     private val context: Context,
-    private val threshold: Float = 0.2f,
+    private val threshold: Float = 0.0f,
     private val maxResults: Int = 1
 ): FoodClassifier {
 

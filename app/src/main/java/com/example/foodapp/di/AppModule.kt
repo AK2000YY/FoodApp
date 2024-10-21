@@ -5,7 +5,7 @@ import com.example.foodapp.data.repository.AuthRepositoryImpl
 import com.example.foodapp.data.repository.FoodClassifierImpl
 import com.example.foodapp.domain.repository.AuthRepository
 import com.example.foodapp.domain.repository.FoodClassifier
-import com.example.foodapp.presentation.cameraPreview.FoodImageAnalyzer
+import com.example.foodapp.presentation.cameraPreview.FoodCameraAnalyzer
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import dagger.Module
@@ -41,11 +41,12 @@ class AppModuleForViewModel {
         )
 
     @Provides
-    fun provideFoodImageAnalyzer(
+    fun provideFoodCameraAnalyzer(
         foodClassifier: FoodClassifier
-    ): FoodImageAnalyzer =
-        FoodImageAnalyzer(
+    ): FoodCameraAnalyzer =
+        FoodCameraAnalyzer(
             classifier = foodClassifier
         )
+
 
 }
