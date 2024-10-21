@@ -28,7 +28,8 @@ import com.example.foodapp.navigation.sharedData.SharedViewModel
 @Composable
 fun CameraPreviewScreen(
     modifier: Modifier = Modifier,
-    viewModel: SharedViewModel = hiltViewModel()
+    viewModel: SharedViewModel = hiltViewModel(),
+    toFoodView: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
     Box(
@@ -61,7 +62,9 @@ fun CameraPreviewScreen(
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 20.dp)
                     .clickable {
-                        viewModel.captureImage()
+                        viewModel.captureImage(
+                            toFoodView = toFoodView
+                        )
                     },
                 imageVector = Icons.Rounded.PlayArrow,
                 contentDescription =null

@@ -43,15 +43,19 @@ fun NavGraphBuilder.findOutFood(
         ) {
             CameraPreviewScreen(
                 modifier = modifier,
-                viewModel = it.sharedViewModel(navHostController = navHostController)
+                viewModel = it.sharedViewModel(navHostController = navHostController),
+                toFoodView = {
+                    navHostController.navigate(FoodKindView.route)
+                }
             )
         }
 
         composable(
-            route = FoodKindView.route
+            route = FoodKindView.route,
         ) {
             FoodViewScreen(
-                modifier = modifier
+                modifier = modifier,
+                viewModel = it.sharedViewModel(navHostController = navHostController)
             )
         }
     }

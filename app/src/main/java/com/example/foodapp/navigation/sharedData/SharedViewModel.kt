@@ -70,7 +70,9 @@ class SharedViewModel @Inject constructor(
         foodCameraAnalyzer.analyzeImage(bitmap)
     }
 
-    fun captureImage() {
+    fun captureImage(
+        toFoodView: () -> Unit
+    ) {
         controller.takePicture(
             ContextCompat.getMainExecutor(context),
             object: OnImageCapturedCallback() {
@@ -89,6 +91,7 @@ class SharedViewModel @Inject constructor(
                         true
                     )
                     updateImage(rotatedBitmap)
+                    toFoodView()
                 }
 
                 override fun onError(exception: ImageCaptureException) {
