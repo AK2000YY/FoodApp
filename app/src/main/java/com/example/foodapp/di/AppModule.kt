@@ -2,11 +2,13 @@ package com.example.foodapp.di
 
 import android.content.Context
 import com.example.foodapp.core.constant.Constant.FOOD
+import com.example.foodapp.core.constant.Constant.USER
 import com.example.foodapp.data.repository.AuthRepositoryImpl
 import com.example.foodapp.data.repository.FoodClassifierImpl
 import com.example.foodapp.data.repository.FoodRepositoryImpl
 import com.example.foodapp.domain.repository.AuthRepository
 import com.example.foodapp.domain.repository.FoodClassifier
+import com.example.foodapp.domain.repository.FoodRepository
 import com.example.foodapp.presentation.cameraPreview.FoodCameraAnalyzer
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -30,9 +32,13 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideFoodRepository(): FoodRepositoryImpl =
+    fun provideFoodRepository(): FoodRepository =
         FoodRepositoryImpl(
-            collectionReference = Firebase.firestore.collection(FOOD)
+            collectionReference = Firebase
+                .firestore
+                .collection(USER)
+                .document(Firebase.auth.currentUser!!.uid)
+                .collection(FOOD)
         )
 
 }

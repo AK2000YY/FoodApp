@@ -86,6 +86,7 @@ dependencies {
     implementation(libs.com.google.firebase.analytics)
     implementation(libs.com.google.firebase.auth)
     implementation(libs.com.google.firebase.firestore)
+    implementation(libs.com.google.firebase.storage)
     implementation(libs.androidx.compose.material)
 
     implementation(libs.io.coil.kt.coil3)

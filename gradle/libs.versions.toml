@@ -54,6 +54,7 @@ com-google-firebase-bom = { group =  "com.google.firebase", name = "firebase-bom
 com-google-firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 com-google-firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 com-google-firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+com-google-firebase-storage = { group = "com.google.firebase", name = "firebase-storage" }
 
 tensorflow-lite-gpu = { module = "org.tensorflow:tensorflow-lite-gpu", version.ref = "tensorflowLiteGpu" }
 tensorflow-lite-gpu-delegate-plugin = { module = "org.tensorflow:tensorflow-lite-gpu-delegate-plugin", version.ref = "tensorflowLiteGpuDelegatePlugin" }
