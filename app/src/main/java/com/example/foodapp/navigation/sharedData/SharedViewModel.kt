@@ -43,10 +43,7 @@ class SharedViewModel @Inject constructor(
 
     init {
         foodCameraAnalyzer.onResult = {
-            if(it[0].name != null)
-                updateName(it[0].name)
-            else
-                updateName(null)
+            updateName(it[0].name)
         }
     }
 
@@ -66,8 +63,16 @@ class SharedViewModel @Inject constructor(
         }
     }
 
-    fun analyzeImage(bitmap: Bitmap) {
+    fun analyzeImage(
+        bitmap: Bitmap,
+        toFoodView: () -> Unit
+    ) {
         foodCameraAnalyzer.analyzeImage(bitmap)
+        if(state.value.name != null) {
+            updateImage(bitmap)
+            toFoodView()
+        }else
+            Utils.showMessage(context, "don't know the image")
     }
 
     fun captureImage(

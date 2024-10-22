@@ -34,6 +34,9 @@ fun NavGraphBuilder.findOutFood(
                 viewModel = it.sharedViewModel(navHostController = navHostController),
                 toCamera = {
                     navHostController.navigate(CameraViewScreen.route)
+                },
+                toFoodView = {
+                    navHostController.navigate(FoodKindView.route)
                 }
             )
         }

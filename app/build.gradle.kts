@@ -89,6 +89,8 @@ dependencies {
     implementation(libs.androidx.compose.material)
 
     implementation(libs.io.coil.kt.coil3)
+    implementation(libs.androidx.compose.material.icons.extended)
+
 
     implementation(libs.tensorflow.lite.task.vision)
     implementation(libs.tensorflow.lite.gpu.delegate.plugin)

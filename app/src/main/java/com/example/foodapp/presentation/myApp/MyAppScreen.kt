@@ -8,8 +8,8 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.FavoriteBorder
+import androidx.compose.material.icons.rounded.PhotoLibrary
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -27,8 +27,8 @@ import com.example.foodapp.navigation.Screen
 
 val topLevelRoutes = listOf(
     TopLevelRoute("Favourite", Screen.FavouriteFoodScreen, Icons.Rounded.FavoriteBorder),
-    TopLevelRoute("Discovered", Screen.DiscoveredFoodScreen, Icons.Rounded.Search),
-    TopLevelRoute("Find Out", Screen.FindOutKindFoodScreen, Icons.Rounded.Add),
+    TopLevelRoute("Discovered", Screen.DiscoveredFoodScreen, Icons.Rounded.PhotoLibrary),
+    TopLevelRoute("Find Out", Screen.FindOutKindFoodScreen, Icons.Rounded.Search),
 )
 
 @Composable
@@ -43,7 +43,6 @@ fun MyAppScreen(
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentDestination = navBackStackEntry?.destination?.route
 
-            // Show bottom navigation only for specific screens
             if (currentDestination == Screen.FavouriteFoodScreen.route ||
                 currentDestination == Screen.DiscoveredFoodScreen.route ||
                 currentDestination == Screen.FindOutKindFoodScreen.route

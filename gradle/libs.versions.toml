@@ -61,6 +61,8 @@ tensorflow-lite-task-vision = { module = "org.tensorflow:tensorflow-lite-task-vi
 
 androidx-compose-material = { group = "androidx.compose.material", name = "material", version.ref = "material" }
 
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+
 io-coil-kt-coil3 = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 
 [plugins]
