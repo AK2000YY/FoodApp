@@ -1,4 +1,4 @@
-package com.example.foodapp.core.extensionFunction
+package com.example.foodapp.core.functions
 
 import android.graphics.Bitmap
 

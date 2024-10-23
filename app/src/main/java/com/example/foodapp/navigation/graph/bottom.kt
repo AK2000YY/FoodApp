@@ -1,8 +1,5 @@
 package com.example.foodapp.navigation.graph
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -13,6 +10,7 @@ import com.example.foodapp.core.constant.Routes.FIND_OUT_ROUTE
 import com.example.foodapp.navigation.Screen.DiscoveredFoodScreen
 import com.example.foodapp.navigation.Screen.FavouriteFoodScreen
 import com.example.foodapp.presentation.discoveredFood.DiscoveredFoodScreen
+import com.example.foodapp.presentation.favouriteFood.FavouriteFoodScreen
 
 fun NavGraphBuilder.bottom(
     modifier: Modifier,
@@ -39,12 +37,9 @@ fun NavGraphBuilder.bottom(
         composable(
             route = FavouriteFoodScreen.route
         ) {
-            Box(
-                modifier = modifier,
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Favourite")
-            }
+            FavouriteFoodScreen(
+                modifier = modifier
+            )
         }
 
     }

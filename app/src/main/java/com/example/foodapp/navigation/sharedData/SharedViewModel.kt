@@ -22,6 +22,7 @@ import com.example.foodapp.domain.model.Food
 import com.example.foodapp.domain.model.Response
 import com.example.foodapp.domain.model.Response.Success
 import com.example.foodapp.domain.repository.FoodRepository
+import com.example.foodapp.domain.repository.ImageUploadRepository
 import com.example.foodapp.presentation.cameraPreview.FoodCameraAnalyzer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -37,7 +38,8 @@ import javax.inject.Inject
 class SharedViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
     private val foodCameraAnalyzer: FoodCameraAnalyzer,
-    private val foodRepository: FoodRepository
+    private val foodRepository: FoodRepository,
+    private val imageUploadRepository: ImageUploadRepository
 ): ViewModel() {
 
     var response by mutableStateOf<Response<Boolean>>(Success(false))
@@ -94,13 +96,17 @@ class SharedViewModel @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.O)
     fun saveFood() = viewModelScope.launch {
         response = Response.Loading
-        response = foodRepository.addFood(
-            Food(
-                name = state.value.name,
-                image = "la ellaha ela allah",
-                date = LocalDate.now().toString()
+        val responseImage = imageUploadRepository.uploadImage(state.value.image!!)
+        response = if(responseImage is Success && responseImage.data != "")
+            foodRepository.addFood(
+                Food(
+                    name = state.value.name,
+                    image = responseImage.data,
+                    date = LocalDate.now().toString(),
+                    favour = false
+                )
             )
-        )
+        else Response.Failure(Exception("something is error"))
     }
 
     fun captureImage(

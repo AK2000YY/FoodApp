@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.foodapp.core.classes.Utils
 import com.example.foodapp.core.constant.Constant.USER_NOT_FOUND
 import com.example.foodapp.domain.model.Response
 import com.example.foodapp.presentation.introduction.component.IntroductionContainer

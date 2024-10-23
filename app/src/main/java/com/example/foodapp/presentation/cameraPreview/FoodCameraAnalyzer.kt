@@ -3,10 +3,9 @@ package com.example.foodapp.presentation.cameraPreview
 import android.graphics.Bitmap
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
-import com.example.foodapp.core.extensionFunction.centerCrop
+import com.example.foodapp.core.functions.centerCrop
 import com.example.foodapp.domain.model.Classification
 import com.example.foodapp.domain.repository.FoodClassifier
-import org.tensorflow.lite.support.image.TensorImage
 import javax.inject.Inject
 
 class FoodCameraAnalyzer @Inject constructor(

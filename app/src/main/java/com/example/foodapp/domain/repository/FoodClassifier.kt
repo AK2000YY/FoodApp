@@ -1,6 +1,6 @@
 package com.example.foodapp.domain.repository
 
-import coil3.Bitmap
+import android.graphics.Bitmap
 import com.example.foodapp.domain.model.Classification
 
 interface FoodClassifier {

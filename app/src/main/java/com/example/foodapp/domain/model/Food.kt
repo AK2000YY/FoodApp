@@ -7,5 +7,6 @@ data class Food(
     val id: String? = null,
     val image: String? = null,
     val name: String? = null,
-    val date: String? = null
+    val date: String? = null,
+    val favour: Boolean? = false
 )

@@ -1,12 +1,10 @@
 package com.example.foodapp.core.classes
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 
 class Utils {
     companion object {
-        fun print(e: Exception) = Log.d("AK2000YY", e.message.toString())
 
         fun showMessage(
             context: Context,

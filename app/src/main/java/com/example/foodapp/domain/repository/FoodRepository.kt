@@ -10,6 +10,8 @@ interface FoodRepository {
 
     suspend fun addFood(food: Food): Response<Boolean>
 
+    suspend fun updateFood(id: String, isFavour: Boolean): Response<Boolean>
+
     suspend fun deleteFood(id: String): Response<Boolean>
 
 }

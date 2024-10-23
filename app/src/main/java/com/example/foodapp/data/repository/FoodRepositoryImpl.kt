@@ -1,6 +1,5 @@
 package com.example.foodapp.data.repository
 
-import android.util.Log
 import com.example.foodapp.domain.model.Food
 import com.example.foodapp.domain.model.Response
 import com.example.foodapp.domain.repository.FoodRepository
@@ -22,12 +21,13 @@ class FoodRepositoryImpl @Inject constructor(
                 close(e)
                 return@addSnapshotListener
             }
-            Log.d("AK2000YYS", snapshot.toString())
             val foods = snapshot?.documents?.map {
                 Food(
                     id = it.id,
+                    image = it.getField("image"),
                     name = it.getField("name"),
-                    date = it.getField("date")
+                    date = it.getField("date"),
+                    favour = it.getField("favour")
                 )
             } ?: emptyList()
             trySend(foods)
@@ -43,6 +43,16 @@ class FoodRepositoryImpl @Inject constructor(
             Response.Failure(e)
         }
 
+    override suspend fun updateFood(id: String, isFavour: Boolean): Response<Boolean> =
+        try {
+            collectionReference.document(id).update(mapOf(
+                "favour" to !isFavour
+            )).await()
+            Response.Success(true)
+        }catch (e: Exception) {
+            Response.Failure(e)
+        }
+
     override suspend fun deleteFood(id: String): Response<Boolean> =
         try {
             collectionReference.document(id).delete().await()
@@ -50,4 +60,6 @@ class FoodRepositoryImpl @Inject constructor(
         }catch (e: Exception) {
             Response.Failure(e)
         }
+
+
 }
