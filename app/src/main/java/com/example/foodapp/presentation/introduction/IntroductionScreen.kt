@@ -29,7 +29,6 @@ fun IntroductionScreen(
             }
         is Response.Failure ->
             LaunchedEffect(response.e) {
-                Utils.print(response.e)
                 if(response.e.message == USER_NOT_FOUND) toRegister()
                 else toVerification()
             }

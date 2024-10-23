@@ -3,15 +3,25 @@ package com.example.foodapp.navigation.sharedData
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Matrix
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.camera.core.ImageCapture.OnImageCapturedCallback
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.ImageProxy
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.foodapp.core.classes.Utils
 import com.example.foodapp.domain.model.Classification
+import com.example.foodapp.domain.model.Food
+import com.example.foodapp.domain.model.Response
+import com.example.foodapp.domain.model.Response.Success
+import com.example.foodapp.domain.repository.FoodRepository
 import com.example.foodapp.presentation.cameraPreview.FoodCameraAnalyzer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -19,13 +29,19 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val foodCameraAnalyzer: FoodCameraAnalyzer
+    private val foodCameraAnalyzer: FoodCameraAnalyzer,
+    private val foodRepository: FoodRepository
 ): ViewModel() {
+
+    var response by mutableStateOf<Response<Boolean>>(Success(false))
+        private set
 
     private val _state = MutableStateFlow(Classification())
     val state: StateFlow<Classification> = _state.asStateFlow()
@@ -73,6 +89,18 @@ class SharedViewModel @Inject constructor(
             toFoodView()
         }else
             Utils.showMessage(context, "don't know the image")
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun saveFood() = viewModelScope.launch {
+        response = Response.Loading
+        response = foodRepository.addFood(
+            Food(
+                name = state.value.name,
+                image = "la ellaha ela allah",
+                date = LocalDate.now().toString()
+            )
+        )
     }
 
     fun captureImage(

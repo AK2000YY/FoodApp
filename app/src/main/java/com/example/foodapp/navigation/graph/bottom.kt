@@ -12,6 +12,7 @@ import com.example.foodapp.core.constant.Routes.APP_ROUTE
 import com.example.foodapp.core.constant.Routes.FIND_OUT_ROUTE
 import com.example.foodapp.navigation.Screen.DiscoveredFoodScreen
 import com.example.foodapp.navigation.Screen.FavouriteFoodScreen
+import com.example.foodapp.presentation.discoveredFood.DiscoveredFoodScreen
 
 fun NavGraphBuilder.bottom(
     modifier: Modifier,
@@ -30,12 +31,9 @@ fun NavGraphBuilder.bottom(
         composable(
             route = DiscoveredFoodScreen.route
         ) {
-            Box(
-                modifier = modifier,
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Discovered")
-            }
+            DiscoveredFoodScreen(
+                modifier = modifier
+            )
         }
 
         composable(

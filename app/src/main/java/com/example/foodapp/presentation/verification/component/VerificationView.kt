@@ -66,7 +66,7 @@ fun VerificationView(
             Text(
                 modifier = Modifier
                     .clickable {
-
+                        verifyEmail()
                     },
                 text = "press here",
                 style = MaterialTheme.typography.titleMedium,

@@ -30,7 +30,6 @@ class SignupLoginViewModel @Inject constructor(
 
 
     fun login() = viewModelScope.launch {
-        println("$loginEmail $loginPassword \n")
         response = Loading
         response = authRepository.login(loginEmail, loginPassword)
     }
