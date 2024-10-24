@@ -31,14 +31,17 @@ fun SignupContainer(
             ) {
                 CustomTextField(
                     text = email,
+                    placeholder = "Enter Your Email",
                     onChange = emailChange
                 )
                 CustomTextField(
                     text = password,
+                    placeholder = "Enter Your Password",
                     onChange = passwordChange
                 )
                 CustomTextField(
                     text = confirmPassword,
+                    placeholder = "Enter Your confirm Password",
                     onChange = confirmPasswordChange
                 )
             }

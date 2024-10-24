@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 fun CustomTextField(
     modifier: Modifier = Modifier,
     text: String,
+    placeholder: String,
     onChange: (String) -> Unit
 ) {
     TextField(
@@ -23,7 +24,7 @@ fun CustomTextField(
         value = text,
         onValueChange = onChange,
         placeholder = {
-            Text(text = "Enter Your Email")
+            Text(text = placeholder)
         },
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
