@@ -97,6 +97,8 @@ dependencies {
     implementation(libs.tensorflow.lite.gpu.delegate.plugin)
     implementation(libs.tensorflow.lite.gpu)
 
+    implementation(libs.com.google.code.gson)
+
 }
 
 kapt {

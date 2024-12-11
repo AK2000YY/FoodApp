@@ -20,6 +20,7 @@ tensorflowLiteGpuDelegatePlugin = "0.4.0"
 tensorflowLiteTaskVision = "0.4.0"
 material = "1.7.4"
 coil = "2.7.0"
+json = "2.8.9"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -65,6 +66,8 @@ androidx-compose-material = { group = "androidx.compose.material", name = "mater
 androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 
 io-coil-kt-coil3 = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+com-google-code-gson = { group = "com.google.code.gson", name = "gson" , version.ref = "json" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
