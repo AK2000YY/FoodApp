@@ -42,7 +42,7 @@ class FoodViewViewModel @Inject constructor(
 
     fun findItemByName(name: String) = viewModelScope.launch {
         response = Response.Loading
-        nutritionalValue = list.firstOrNull { it.name == name }!!
+        nutritionalValue = list.firstOrNull { it.name == name } ?: NutritionalValue()
         response = Response.Success(true)
     }
 }

@@ -115,32 +115,32 @@ fun NutritionalValueDetail(
         modifier = modifier
             .verticalScroll(rememberScrollState())
     ) {
-        NutritionalValueOne(firstText = "Name" , secondText = nutritionalValue.name!!)
+        NutritionalValueOne(firstText = "Name" , secondText = nutritionalValue.name?:"?")
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
             .background(Color.Black))
-        NutritionalValueOne(firstText = "Energy" , secondText = "${nutritionalValue.energy!!} kal")
+        NutritionalValueOne(firstText = "Energy" , secondText = "${nutritionalValue.energy?:"?"} kal")
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
             .background(Color.Black))
-        NutritionalValueOne(firstText = "Fats" , secondText = "${nutritionalValue.fats!!} g")
+        NutritionalValueOne(firstText = "Fats" , secondText = "${nutritionalValue.fats?:"?"} g")
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
             .background(Color.Black))
-        NutritionalValueOne(firstText = "Saturated Fatty Acids" , secondText = "${nutritionalValue.saturatedFattyAcids!!} g")
+        NutritionalValueOne(firstText = "Saturated Fatty Acids" , secondText = "${nutritionalValue.saturatedFattyAcids?:"?"} g")
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
             .background(Color.Black))
-        NutritionalValueOne(firstText = "Sugars" , secondText = "${nutritionalValue.sugars!!} g")
+        NutritionalValueOne(firstText = "Sugars" , secondText = "${nutritionalValue.sugars?:"?"} g")
         Box(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp)
             .background(Color.Black))
-        NutritionalValueOne(firstText = "Proteins" , secondText = "${nutritionalValue.proteins!!} g")
+        NutritionalValueOne(firstText = "Proteins" , secondText = "${nutritionalValue.proteins?:"?"} g")
     }
 }
 
