@@ -2868,31 +2868,76 @@
     "Proteins": "3.9"
   },
   {
-    "id": "253",
-    "name": "",
-    "Energy": "",
-    "Fats": "?",
-    "saturated fatty acids": "?",
-    "Sugars": "?",
-    "Proteins": "?"
+    "id": "1376",
+    "name": "Kanafeh",
+    "Energy": "331.3",
+    "Fats": "20.3",
+    "saturated fatty acids": "12.2",
+    "Sugars": "15.4",
+    "Proteins": "6.2"
   },
   {
-    "id": "2",
-    "name": "",
-    "Energy": "",
-    "Fats": "?",
-    "saturated fatty acids": "?",
-    "Sugars": "?",
-    "Proteins": "?"
+    "id": "1511",
+    "name": "Fried shrimp",
+    "Energy": "315.4",
+    "Fats": "19.1",
+    "saturated fatty acids": "3.4",
+    "Sugars": "0.9",
+    "Proteins": "12.5"
   },
   {
-    "id": "2",
-    "name": "",
-    "Energy": "",
-    "Fats": "?",
-    "saturated fatty acids": "?",
-    "Sugars": "?",
-    "Proteins": "?"
+    "id": "1574",
+    "name": "Shami kebab",
+    "Energy": "242.5",
+    "Fats": "18.8",
+    "saturated fatty acids": "4.4",
+    "Sugars": "1.8",
+    "Proteins": "12.5"
+  },
+  {
+    "id": "1621",
+    "name": "Hamburger",
+    "Energy": "257",
+    "Fats": "9.22",
+    "saturated fatty acids": "3.361",
+    "Sugars": "6.32",
+    "Proteins": "11.62"
+  },
+  {
+    "id": "1681",
+    "name": "Mandi",
+    "Energy": "162.8",
+    "Fats": "3.8",
+    "saturated fatty acids": "1",
+    "Sugars": "2",
+    "Proteins": "8.3"
+  },
+  {
+    "id": "1730",
+    "name": "Pickled cucumber",
+    "Energy": "12",
+    "Fats": "0.3",
+    "saturated fatty acids": "0.1",
+    "Sugars": "1.1",
+    "Proteins": "0.5"
+  },
+  {
+    "id": "1735",
+    "name": "Shish taouk",
+    "Energy": "112.8",
+    "Fats": "3.2",
+    "saturated fatty acids": "0.7",
+    "Sugars": "1.6",
+    "Proteins": "16.8"
+  },
+  {
+    "id": "1785",
+    "name": "Baklava",
+    "Energy": "403.9",
+    "Fats": "26.4",
+    "saturated fatty acids": "9.4",
+    "Sugars": "21.1",
+    "Proteins": "7.3"
   },
   {
     "id": "2",
